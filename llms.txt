@@ -1,0 +1,25 @@
+# @mgpl-diagnostics/worker-kit
+
+> Background jobs for the MGPL Diagnostics backend (Node.js ≥ 20). Typed job definitions and one queue API over BullMQ on Redis, in-process, or worker-when-available-else-standalone; plus the worker runner. The main entry has no runtime dependencies; bullmq and ioredis are optional peers used only by "/bullmq".
+
+Key facts for agents:
+- `defineJob({ name, queue?, process(data, ctx), validate?, attempts = 3, backoffMs = 2000, keepResultsMs = 1h, keepFailedMs, maxBytes, refuseSecrets = true })`.
+- `createJobQueue({ backend, jobs })` → `enqueue(job, data, { delayMs? })`, `get(job, id)`, `enqueuer(job)` (mail-kit MailQueue shape), `available()`, `close()`.
+- Backends: `inlineBackend({ wait?, onError? })`, `fallbackBackend({ primary, fallback, whenFails?, onFallback? })`, and from "/bullmq" `bullmqBackend({ connection | redisUrl, prefix = "mgpl" })`.
+- Worker: `startWorker({ jobs, connection | redisUrl, prefix, concurrency = 4, queues?, onError?, onFailed? })` → `{ queues, workers, close() }`.
+- `JobFailure(message, retry = true)`: message shown to clients; `retry: false` fails at once. Other errors → "Job failed" + `onError`.
+- `JobInfo`: id, name, queue, state (waiting | delayed | active | completed | failed), attempts, error, result, data, createdAt, finishedAt.
+- Errors: `WorkerError.code` = WORKER_UNKNOWN_JOB, WORKER_BAD_DATA, WORKER_DUPLICATE_JOB, WORKER_UNAVAILABLE, WORKER_CLOSED.
+
+## Docs
+
+- [README](README.md): usage, backends, worker, mail-kit
+- [AGENTS.md](AGENTS.md): map and rules
+
+## Source
+
+- [src/define.ts](src/define.ts): definitions, data checks, one attempt
+- [src/queue.ts](src/queue.ts): the producer API
+- [src/inline.ts](src/inline.ts): in-process backend
+- [src/fallback.ts](src/fallback.ts): worker or standalone
+- [src/bullmq.ts](src/bullmq.ts): BullMQ backend and worker
