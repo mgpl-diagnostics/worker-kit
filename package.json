@@ -1,0 +1,63 @@
+{
+  "name": "@mgpl-diagnostics/worker-kit",
+  "version": "0.1.0",
+  "description": "MGPL Diagnostics background jobs: typed job definitions, one queue API over BullMQ on Redis or in-process, a worker runner, and fallback from the worker to standalone. No runtime dependencies; bullmq and ioredis are optional peers used only by the \"/bullmq\" entry.",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": "github:mgpl-diagnostics/worker-kit",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./bullmq": {
+      "types": "./dist/bullmq.d.ts",
+      "import": "./dist/bullmq.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "AGENTS.md",
+    "llms.txt",
+    "LICENSE",
+    "llms-full.txt"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx scripts/test.ts",
+    "prepare": "tsup",
+    "llms": "node scripts/llms-full.mjs @mgpl-diagnostics/worker-kit README.md AGENTS.md llms.txt package.json src scripts"
+  },
+  "peerDependencies": {
+    "bullmq": ">=5",
+    "ioredis": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "bullmq": {
+      "optional": true
+    },
+    "ioredis": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "bullmq": "^5.81.5",
+    "ioredis": "^5.11.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
