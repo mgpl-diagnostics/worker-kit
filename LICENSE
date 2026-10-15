@@ -1,0 +1,17 @@
+Copyright (c) 2026 MGPL Diagnostics (Maa Gayatri Path Lab), Arang, Raipur, Chhattisgarh, India.
+All rights reserved.
+
+This repository is published so that its code can be read and reviewed. No licence is granted.
+Without prior written permission from MGPL Diagnostics you may not use, copy, modify, merge,
+publish, distribute, sublicense or sell this software, its documentation, or the MGPL Diagnostics
+name, logo, letterhead and report designs.
+
+Third-party components included in or used by this repository remain under their own licences;
+see THIRD_PARTY_NOTICES.md where present, and the licence files of each npm dependency.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. Medical reference ranges and
+calculations must be verified by a qualified pathologist before clinical use. Tax, TDS and
+accounting values are configuration, not legal advice, and must be verified by a qualified
+chartered accountant before use.
+
+Contact: https://github.com/mgpl-diagnostics
