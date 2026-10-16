@@ -323,7 +323,7 @@ Key facts for agents:
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
-    "bullmq": "^5.81.5",
+    "bullmq": "^6.3.13",
     "ioredis": "^5.11.1",
     "tsup": "^8.5.0",
     "tsx": "^4.23.15",
