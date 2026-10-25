@@ -325,7 +325,7 @@ Key facts for agents:
     "@types/node": "^22.20.5",
     "bullmq": "^6.3.13",
     "ioredis": "^5.11.1",
-    "tsup": "^8.5.0",
+    "tsup": "^9.0.0",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   },
